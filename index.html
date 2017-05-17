@@ -12,7 +12,7 @@
 
 <body>
 
-  <main class="landingPage">
+  <main class="landingPage" id="landingPage">
     <div class="lineTop">
     </div>
     <h1 class="mainTitle">Flizz</h1>
@@ -30,31 +30,45 @@
     </div>
   </main>
   <main class="results">
-    <h1 class="mainTitle1">Flizz</h1>
-    <nav class="mobile">
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Flizz</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">Javascript</a></li>
-          <li><a href="mobile.html">Mobile</a></li>
-        </ul>
-        <ul class="side-nav" id="mobile-demo">
-          <li><a href="sass.html">Movies</a></li>
-          <li><a href="badges.html">Books</a></li>
-          <li><a href="collapsible.html">Games</a></li>
-        </ul>
-      </div>
-    </nav>
+    <header class="topTitle">
+      <h1 class="mainTitle1">Flizz</h1>
+      <img class="logo1" src="14284.jpeg" />
+    </header>
+    <div class="mobileHeader">
+      <nav class="mobile">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">Flizz</a>
+          <ul id="slide-out" class="side-nav">
+            <li>
+              <div class="userView">
+                <div class="background">
+                  <img src="blue.jpeg">
+                </div>
+                <a href="javascript:window.location.reload();"><img class="circle" src="14284.jpeg"></a>
+                <a href="javascript:window.location.reload();"><span class="reloadPage">Flizz</span></a>
+              </div>
+            </li>
+            <li><a class="waves-effect" href="#movie"><i class="material-icons">movie</i>Movies</a></li>
+            <li>
+              <div class="divider"></div>
+            </li>
+            <li><a class="waves-effect" href="#book"><i class="material-icons">library_books</i>Books</a></li>
+            <li>
+              <div class="divider"></div>
+            </li>
+            <li><a class="waves-effect" href="#game"><i class="material-icons">games</i>Games</a></li>
+          </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+    </div>
     <div class="container">
-      <section class="bookResults">
+      <section class="bookResults" id="book">
       </section>
-      <section class="gameResults">
+      <section class="gameResults" id="game">
       </section>
 
-      <section class="movieResults">
+      <section class="movieResults" id="movie">
       </section>
     </div>
     <embed </main>

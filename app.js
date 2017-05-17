@@ -30,6 +30,7 @@ $(document).ready(function() {
           $('.bookResults').append('<div class="card-content"><p class="card-subtitle grey-text text-darken-2">' + result.items[i].searchInfo.textSnippet + '</p></div');
           //Amazon Link
           $('.bookResults').append('<div class="card-action"><button class="amazon"><a class="link" href="' + amazon + product + '" target=' + next + '>' + here + '</a></button>')
+          $('.bookResults').append('<div class="divide"></div>')
         }
 
       })
@@ -81,6 +82,7 @@ $(document).ready(function() {
           $('.gameResults').append('<div class="card-content"><p class="card-subtitle grey-text text-darken-2">' + result.results[i].deck + '</p></div');
           //Amazon Link
           $('.gameResults').append('<div class="card-action"><button class="amazon"><a class="link" href="' + amazon + product + '" target=' + next + '>' + here + '</a></button>')
+          $('.gameResults').append('<div class="divide"></div>')
 
         }
       })

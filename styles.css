@@ -95,6 +95,8 @@ body {
 
 .categoryTitle {
   font-family: futura, arial;
+  /*position: fixed;
+  z-index: 99;*/
   color: white;
   padding: 2px;
   border-radius: 8px;
@@ -136,12 +138,16 @@ body {
 }
 
 .card-content1 {
+  height: 50px;
   margin: 3px;
   border: 1px solid black;
-  background-color: white;
+  background-color: #D3D3D3;
   border-radius: 10px;
   box-shadow: 5px 5px 2px #888888;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2px;
 }
 
@@ -200,13 +206,19 @@ nav .brand-logo {
 }
 
 .card-content {
-  border: 1px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
   border-radius: 10px;
-  padding: 3px;
+  padding-bottom: 5%;
   box-shadow: 5px 5px 2px #888888;
   margin-bottom: 4px;
   object-fit: cover;
-  height: 200px;
+  height: 210px;
+  overflow: hidden;
+}
+
+.card-subtitle {
+  text-align: center;
 }
 
 .pic {
@@ -224,6 +236,11 @@ nav .brand-logo {
   font-family: futura, arial;
 }
 
+.link1 {
+  color: #163E7E;
+  font-family: futura, arial;
+}
+
 .card-action {
   display: flex;
   justify-content: center;
@@ -231,7 +248,7 @@ nav .brand-logo {
 }
 
 .amazon {
-  padding: 5px !important;
+  padding: 5px;
   text-align: center;
   margin-top: 4px;
   box-shadow: 5px 5px 2px #888888 !important;
@@ -240,10 +257,46 @@ nav .brand-logo {
   border-radius: 10px !important;
 }
 
+.waves-effect {
+  color: #163E7E;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px #888888;
+  background-color: #6AEABE;
+  border: 1px solid black;
+}
+
+.preview {
+  padding: 5px;
+  text-align: center;
+  box-shadow: 5px 5px 2px #888888;
+  background-color: #6AEABE;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loadingText {
+  font-family: futura, arial;
+  color: white;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid black;
+  box-shadow: 5px 5px 2px black;
+  text-shadow: 3px 3px 3px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
 @media only screen and (min-width: 750px) {
   .results {
     margin-top: 5px;
-    width: 90%;
+    width: 100%;
   }
   .container {
     width: 90%;
@@ -253,14 +306,12 @@ nav .brand-logo {
     flex-direction: row;
     justify-content: space-between;
   }
-  /*.mobileHeader {
-    display: none;
-  }*/
   .mobileDesign {
     display: none !important;
   }
   .mainTitle1 {
     margin-top: 0;
+    margin-right: 3%;
     padding-bottom: 0;
     text-align: center;
     font-family: futura, arial;
@@ -271,6 +322,7 @@ nav .brand-logo {
   .logo1 {
     border: 1px solid black;
     margin-top: 5px;
+    margin-left: 3%;
     box-shadow: 5px 5px 2px #888888;
     height: 130px;
     width: 100px;
@@ -279,7 +331,9 @@ nav .brand-logo {
   .topTitle {
     display: flex;
     justify-content: center;
-    width: 90%;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
     padding-bottom: 0;
     border: 1px solid black;
     background: #98CBC5;

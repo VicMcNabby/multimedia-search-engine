@@ -17,10 +17,10 @@
 - As a user, I want to be able to purchase a specific result on Amazon
 - As a user, I want an organized search result page
 - As a user, I want the search results in their respective categories
-- **As a user, I want the results in a stylish list**
-- **As a user, I want a description for each movie**
+- As a user, I want the results in a stylish list
+- As a user, I want a description for each movie
 - As a user, I want to see a trailer for each Movie
 - As a user, I want a link to an excerpt from each Book
 - **As a user, I want to see a review for each Game**
-- **As a user, I want to see a review for each Movie**
+- As a user, I want to see a review for each Movie
 - As a user, I want to see a review for each Book

@@ -1,20 +1,42 @@
 $(document).ready(function() {
+  $(appReady);
 
-  $('.results').hide();
   $(".button-collapse").sideNav();
-  $('button').click(function(event) {
+  var userInput = $('.search').val();
+  var here = 'Browse Amazon';
+  var next = "_blank";
 
+
+  function appReady() {
+    setLoading(false)
+    $('.input').submit(getInfo)
+  }
+  let progressInterval = null;
+
+  function setLoading(isLoading) {
+    if (isLoading) {
+      $('.loading').show()
+      $('.landingPage').hide();
+      progressInterval = setInterval(function() {
+        $('#progressBar').css('width', Math.random() * 100 + '%');
+      }, 500);
+      $('.results').hide();
+    } else {
+      $('.loading').hide();
+      $('.results').show();
+      clearInterval(progressInterval);
+    }
+  }
+
+  function getInfo(event) {
     event.preventDefault()
-    $('.landingPage').hide();
-    $('.results').show();
     var userInput = $('.search').val();
-    var here = 'Browse Amazon';
-    var next = "_blank";
+    setLoading(true);
 
     $.get('https://www.googleapis.com/books/v1/volumes?q=' + userInput)
       .then(function(result) {
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_ss_c_2_11?url=search-alias%3Dstripbooks&field-keywords=';
-        console.log(result);
+        // console.log(result);
         $('.bookResults').prepend('<h3 class ="categoryTitle">BOOKS</h3>');
 
         for (let i = 0; i < 3; i++) {
@@ -46,7 +68,7 @@ $(document).ready(function() {
           let imdb = 'IMDB Rating: '
           $.get('https://www.omdbapi.com/?t=' + product)
             .then(function(results) {
-              console.log(results);
+              // console.log(results);
               $('.movieResults').append('<div class="row" >');
               $('.movieResults').append('<div class="col s12 m4 l3" >');
               //Card Image
@@ -66,7 +88,7 @@ $(document).ready(function() {
     $.get('https://galvanize-cors-proxy.herokuapp.com/http://giantbomb.now.sh/?query=' + userInput)
       .then(function(result) {
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dvideogames&field-keywords='
-        console.log(result);
+        // console.log(result);
         $('.gameResults').prepend('<h3 class ="categoryTitle">GAMES</h3>');
 
         for (let i = 0; i < 3; i++) {
@@ -83,9 +105,8 @@ $(document).ready(function() {
           //Amazon Link
           $('.gameResults').append('<div class="card-action"><button class="amazon"><a class="link" href="' + amazon + product + '" target=' + next + '>' + here + '</a></button>')
           $('.gameResults').append('<div class="divide"></div>')
-
+          setLoading(false);
         }
       })
-  })
-
+  }
 })

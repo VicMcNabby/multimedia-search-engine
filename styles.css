@@ -253,8 +253,11 @@ nav .brand-logo {
     flex-direction: row;
     justify-content: space-between;
   }
-  .mobileHeader {
+  /*.mobileHeader {
     display: none;
+  }*/
+  .mobileDesign {
+    display: none !important;
   }
   .mainTitle1 {
     margin-top: 0;

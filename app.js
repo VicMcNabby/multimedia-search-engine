@@ -5,6 +5,7 @@ $(document).ready(function() {
   var userInput = $('.search').val();
   var here = 'Browse Amazon';
   var next = "_blank";
+  $('.mobileDesign').hide()
 
 
   function appReady() {
@@ -17,15 +18,19 @@ $(document).ready(function() {
     if (isLoading) {
       $('.loading').show()
       $('.landingPage').hide();
-      progressInterval = setInterval(function() {
-        $('#progressBar').css('width', Math.random() * 100 + '%');
-      }, 500);
+      // progressInterval = setInterval(function() {
+      //   $('#progressBar').css('width', Math.random() * 100 + '%');
+      // }, 500);
       $('.results').hide();
     } else {
       $('.loading').hide();
       $('.results').show();
+
+
       clearInterval(progressInterval);
     }
+
+
   }
 
   function getInfo(event) {
@@ -107,6 +112,7 @@ $(document).ready(function() {
           $('.gameResults').append('<div class="divide"></div>')
           setLoading(false);
         }
+        $('.mobileDesign').show()
       })
   }
 })

@@ -1,8 +1,9 @@
 $(document).ready(function() {
   $(appReady);
-
+  //Materialize initializations
   $('.modal').modal();
   $(".button-collapse").sideNav();
+
   $('.mobileDesign').hide()
 
   var userInput = $('.search').val();
@@ -13,7 +14,7 @@ $(document).ready(function() {
     setLoading(false)
     $('.input').submit(getInfo)
   }
-
+  //Loading function
   function setLoading(isLoading) {
     if (isLoading) {
       $('.loading').show()
@@ -25,11 +26,12 @@ $(document).ready(function() {
     }
   }
 
+  //Requests
   function getInfo(event) {
     event.preventDefault()
     var userInput = $('.search').val();
     setLoading(true);
-
+    //Google Books API
     $.get('https://www.googleapis.com/books/v1/volumes?q=' + userInput)
       .then(function(result) {
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_ss_c_2_11?url=search-alias%3Dstripbooks&field-keywords=';
@@ -40,6 +42,7 @@ $(document).ready(function() {
           let product = result.items[i].volumeInfo.title
           let bookPreview = result.items[i].volumeInfo.previewLink
           let clickHere = 'Book Preview'
+          let proxy = 'https://images.weserv.nl/'
 
           //Card Image
           $('.bookResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + result.items[i].volumeInfo.imageLinks.thumbnail + '"></div>');
@@ -56,7 +59,7 @@ $(document).ready(function() {
         }
 
       })
-
+    //OMDB - Movies API
     $.get('https://www.omdbapi.com/?s=' + userInput + '&type=movie')
       .then(function(result) {
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Dmovies-tv&field-keywords=';
@@ -65,7 +68,7 @@ $(document).ready(function() {
 
         for (let i = 0; i < 5; i++) {
           let product = result.Search[i].Title
-
+          //OMDB - Plot request
           $.get('https://www.omdbapi.com/?t=' + product)
             .then(function(results) {
               let imdb = 'http://www.imdb.com/title/'
@@ -86,7 +89,7 @@ $(document).ready(function() {
             })
         }
       })
-
+    //GiantBomb - Game API
     $.get('https://galvanize-cors-proxy.herokuapp.com/http://giantbomb.now.sh/?query=' + userInput)
       .then(function(result) {
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dvideogames&field-keywords='
@@ -110,6 +113,7 @@ $(document).ready(function() {
 
             $('.modal-content').empty()
             $('.modal-content').append('<h4>Platforms: </h4>')
+            //Nested For Loop for Platform Information
             for (let j = 0; j < result.results[i].platforms.length; j++) {
               //Available Platforms
               $('.modal-content').append('<p>' + result.results[i].platforms[j].name + '</p>')

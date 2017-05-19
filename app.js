@@ -1,17 +1,18 @@
 $(document).ready(function() {
   $(appReady);
+
   $('.modal').modal();
   $(".button-collapse").sideNav();
+  $('.mobileDesign').hide()
+
   var userInput = $('.search').val();
   var here = 'Browse Amazon';
   var next = "_blank";
-  $('.mobileDesign').hide()
 
   function appReady() {
     setLoading(false)
     $('.input').submit(getInfo)
   }
-  let progressInterval = null;
 
   function setLoading(isLoading) {
     if (isLoading) {
@@ -21,10 +22,7 @@ $(document).ready(function() {
     } else {
       $('.loading').hide();
       $('.results').show();
-
-      clearInterval(progressInterval);
     }
-
   }
 
   function getInfo(event) {
@@ -35,7 +33,7 @@ $(document).ready(function() {
     $.get('https://www.googleapis.com/books/v1/volumes?q=' + userInput)
       .then(function(result) {
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_ss_c_2_11?url=search-alias%3Dstripbooks&field-keywords=';
-        console.log(result);
+
         $('.bookResults').prepend('<h3 class ="categoryTitle">BOOKS</h3>');
 
         for (let i = 0; i < 5; i++) {

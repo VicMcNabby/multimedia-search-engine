@@ -69,10 +69,12 @@ body {
 #modal1 {
   border-radius: 25px;
   box-shadow: 10px 10px 4px #2E4057;
-  background: linear-gradient(#44CF6C, #F1FFE7);
+  background: linear-gradient(#CAFFB9, #F1FFE7);
 }
 
 .modal-footer {
+  display: flex;
+  justify-content: center;
   background-color: #F1FFE7 !important;
 }
 
@@ -276,7 +278,6 @@ nav .brand-logo {
   box-shadow: 5px 5px 2px #888888;
   background-color: #CAFFB9;
   border: 1px solid black;
-  width: 80%;
   font-family: futura, arial;
   text-transform: none;
 }

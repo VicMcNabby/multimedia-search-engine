@@ -37,7 +37,7 @@ $(document).ready(function() {
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_ss_c_2_11?url=search-alias%3Dstripbooks&field-keywords=';
 
         $('.bookResults').prepend('<h3 class ="categoryTitle">BOOKS</h3>');
-
+        console.log(result);
         for (let i = 0; i < 5; i++) {
           let product = result.items[i].volumeInfo.title
           let bookPreview = result.items[i].volumeInfo.previewLink
@@ -60,33 +60,34 @@ $(document).ready(function() {
 
       })
     //OMDB - Movies API
-    $.get('https://www.omdbapi.com/?s=' + userInput + '&type=movie')
+    $.get('https://api.themoviedb.org/3/search/movie?api_key=82c848f0d12aeb177346f899a7979c65&language=en-US&query=' + userInput + '&page=1&include_adult=false')
       .then(function(result) {
+        console.log(result);
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Dmovies-tv&field-keywords=';
 
         $('.movieResults').prepend('<h3 class ="categoryTitle">MOVIES</h3>');
 
         for (let i = 0; i < 5; i++) {
-          let product = result.Search[i].Title
+          let poster = 'https://image.tmdb.org/t/p/original'
+          let product = result.results[i].original_title
+          let rating = 'User Rating: '
           //OMDB - Plot request
-          $.get('https://www.omdbapi.com/?t=' + product)
-            .then(function(results) {
-              let imdb = 'http://www.imdb.com/title/'
-              let imdbScore = 'IMDB Rating: ' + results.imdbRating
 
-              //Card Image
-              $('.movieResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + result.Search[i].Poster + '"></div>');
-              //Card Title
-              $('.movieResults').append('<div class="card"><div class="card-image"><span class="card-title ">' + result.Search[i].Title + '</span></div>');
-              //Card Content
-              $('.movieResults').append('<div class="card-content"><p class="card-subtitle black-text text-darken-2">' + results.Plot + '</p></div');
-              //IMDB Page
-              $('.movieResults').append('<div class="card-content1"><button class="waves-effect waves-light btn"><a class="link1" href="' + imdb + results.imdbID + '" target=' + next + '>' + imdbScore + '</a></button>');
-              //Amazon Link
-              $('.movieResults').append('<div class="card-action"><button class="amazon"><a class="link"href="' + amazon + product + '" target=' + next + '>' + here + '</a></button>')
-              //Result Divider
-              $('.movieResults').append('<div class="divide"></div>')
-            })
+
+          //Card Image
+          $('.movieResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + poster + result.results[i].poster_path + '"></div>');
+          //Card Title
+          $('.movieResults').append('<div class="card"><div class="card-image"><span class="card-title ">' + result.results[i].original_title + '</span></div>');
+          //Card Content
+          $('.movieResults').append('<div class="card-content"><p class="card-subtitle black-text text-darken-2">' + result.results[i].overview + '</p></div');
+          //IMDB Page
+          // $('.movieResults').append('<div class="card-content1"><button class="waves-effect waves-light btn"><a class="link1" href="' + imdb +  + '" target=' + next + '>' + rating + '</a></button>');
+          $('.movieResults').append('<div class="card-content1"><button class="waves-effect waves-light btn">' + rating + result.results[i].vote_average + '</button>');
+          //Amazon Link
+          $('.movieResults').append('<div class="card-action"><button class="amazon"><a class="link"href="' + amazon + product + '" target=' + next + '>' + here + '</a></button>')
+          //Result Divider
+          $('.movieResults').append('<div class="divide"></div>')
+
         }
       })
     //GiantBomb - Game API

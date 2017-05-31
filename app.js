@@ -2,8 +2,9 @@ $(document).ready(function() {
   $(appReady);
   //Materialize initializations
   $('.modal').modal();
-  $(".button-collapse").sideNav();
-
+  $('.button-collapse').sideNav();
+  // $('.button-collapse').sideNav('hide')
+  //
   $('.mobileDesign').hide()
 
   var userInput = $('.search').val();
@@ -70,7 +71,7 @@ $(document).ready(function() {
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Dmovies-tv&field-keywords=';
         //dynamically places category title
         $('.movieResults').prepend('<h3 class ="categoryTitle">MOVIES</h3>');
-
+        console.log(result);
         for (let i = 0; i < 5; i++) {
           //url needed to disply movie poster
           let poster = 'https://image.tmdb.org/t/p/original'
@@ -78,9 +79,14 @@ $(document).ready(function() {
           let product = result.results[i].original_title
           //movie ID needed for recommendations
           let movieId = result.results[i].id
+          let newImage = 'movie.jpeg'
+          if (result.results[i].poster_path == null) {
+            $('.movieResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + newImage + '"></div>');
+          } else {
 
-          //Card Image
-          $('.movieResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + poster + result.results[i].poster_path + '"></div>');
+            //Card Image
+            $('.movieResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + poster + result.results[i].poster_path + '"></div>');
+          }
           //Card Title
           $('.movieResults').append('<div class="card"><div class="card-image"><span class="card-title ">' + result.results[i].original_title + '</span></div>');
           //Card Content
@@ -114,6 +120,7 @@ $(document).ready(function() {
     //GiantBomb - Game API
     $.get('https://galvanize-cors-proxy.herokuapp.com/http://giantbomb.now.sh/?query=' + userInput)
       .then(function(result) {
+        console.log(result);
         //Amazon game url
         let amazon = 'https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dvideogames&field-keywords='
         //dynamically places category title
@@ -122,9 +129,13 @@ $(document).ready(function() {
         for (let i = 0; i < 5; i++) {
           //title to be used in Amazon link
           let product = result.results[i].name
-
-          //Card Image
-          $('.gameResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + result.results[i].image.thumb_url + '"></div>');
+          let newImage = 'videogame.jpeg'
+          if (result.results[i].image == null) {
+            $('.gameResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + newImage + '"></div>');
+          } else {
+            //Card Image
+            $('.gameResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + result.results[i].image.thumb_url + '"></div>');
+          }
           //Card Title
           $('.gameResults').append('<div class="card"><div class="card-image"><span class="card-title ">' + result.results[i].name + '</span></div>');
           //Card Content
@@ -153,4 +164,6 @@ $(document).ready(function() {
         $('.mobileDesign').show()
       })
   }
+  $('a.waves-effect').click(function() {;
+  })
 })

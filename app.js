@@ -164,6 +164,7 @@ $(document).ready(function() {
         $('.mobileDesign').show()
       })
   }
-  $('a.waves-effect').click(function() {;
+  $('a.waves-effect').click(function() {
+    $('.button-collapse').sideNav('hide')
   })
 })

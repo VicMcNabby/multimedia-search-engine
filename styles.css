@@ -271,6 +271,10 @@ nav .brand-logo {
   border-radius: 10px !important;
 }
 
+.trailer {
+  color: red;
+}
+
 .waves-effect {
   color: #2E4057;
   border-radius: 10px;

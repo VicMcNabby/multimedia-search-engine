@@ -92,6 +92,7 @@ $(document).ready(function() {
           let product = movies.original_title
           //movie ID needed for recommendations
           let movieId = movies.id
+          let trailer = 'click for trailer'
           let noRecommendations = 'There are no recommended movies for this title'
           let newImage = "movie.jpeg"
           $.get('https://api.themoviedb.org/3/movie/' + movieId + '/videos?api_key=82c848f0d12aeb177346f899a7979c65&language=en-US&page=1')
@@ -101,10 +102,10 @@ $(document).ready(function() {
                 $('.movieResults').append('<div class="card"><div class="card-image"><img class="pic" src=' + newImage + '></div>');
               } else {
                 //Card Image
-                $('.movieResults').append('<div class="card"><div class="card-image"><a href="https://www.youtube.com/watch?v=' + data.results["0"].key + '"target=' + next + '><img class="pic" src="' + poster + movies.poster_path + '"></a></div>');
+                $('.movieResults').append('<div class="card"><div class="card-image"><img class="pic" src="' + poster + movies.poster_path + '"></a></div>');
               }
               //Card Title
-              $('.movieResults').append('<div class="card"><div class="card-image"><span class="card-title ">' + movies.original_title + '</span></div>');
+              $('.movieResults').append('<div class="card"><div class="card-image"><span class="card-title "><a class="trailer" href="https://www.youtube.com/watch?v=' + data.results["0"].key + '"target=' + next + '>' + movies.original_title + '</a></span></div>');
               //Card Content
               $('.movieResults').append('<div class="card-content"><p class="card-subtitle black-text text-darken-2">' + movies.overview + '</p></div');
 
